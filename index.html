@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Firebase</title>
+	<script type="text/javascript" src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+</head>
+<body>
+	<div id="appName"></div>
+	<script type="text/javascript">
+		var ref=new Firebase("https://firebaseio.com/juegos");
+		// ref.child("appName").on("value",function(snapshot){
+		// 	//console.log(snapshot.val());
+		// 	document.getElementById("appName").textContent=snapshot.val();
+		// })
+		ref.on("child_added",function(snapshot){
+			//var lista=snapshot.val();
+			console.log(snapshot.key());
+
+			var juego=document.createElement("article");
+			juego.setAttribute("id",snapshot.key());
+			var data=snapshot.val();
+			juego.innerHTML ="<h3>"+ data.nombre +"</h3>";
+			 	document.getElementById("appName").appendChild(juego);
+		});
+
+		ref.on("child_changed",function(snapshot){
+				var id=document.getElementById(snapshot.key());
+				console.log(id);
+				console.log(id.firstChild);
+				console.log(snapshot.val().nombre);
+				id.firstChild.textContent=snapshot.val().nombre;
+
+		});
+
+
+		// var juego1={nombre:"Gta 1",autor:"Rock Star Games"};
+		// ref.push(juego1);
+		// var juego2={nombre:"Gta 2",autor:"Rock Star Games"};
+		// ref.push(juego2);
+		// var juego3={nombre:"Gta 3",autor:"Rock Star Games"};
+		// ref.push(juego3);
+		// var juego4={nombre:"Gta 4",autor:"Rock Star Games"};
+		// ref.push(juego4);
+	</script>
+</body>
+</html>

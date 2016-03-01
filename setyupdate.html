@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Firebase</title>
+	<script type="text/javascript" src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+</head>
+<body>
+	<div id="appName"></div>
+	<script type="text/javascript">
+		var ref=new Firebase("https://firebaseio.com/appData");
+		var appData={
+				name:"Juegos de Mesas",
+				company:"Ct&S",
+				email:"test@test.com"
+			};
+		var updated=ref.update(appData);
+		
+	</script>
+</body>
+</html>
